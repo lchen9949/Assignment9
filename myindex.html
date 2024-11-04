@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment9 My Webpage</title>
+    <link href="styles/mystyle.css" type="text/css" rel="stylesheet">
+    <script src="jquery-3.7.1.js"></script>
+
+    <script>
+        $(function() {
+            $('#mybutton1').click(function() {
+                alert('The button has been clicked-1.');
+            });
+            $('section input').css('height', '40px')
+                              .css('width', '80px');
+            $('section button').css('height', '40px')
+                               .css('width', '71px');
+
+            $('#mybutton2').bind('click', function() {
+                alert('The button has been clicked-2.');
+            })
+
+            $('#mybutton3').on('click', function() {
+                alert('The button has been clicked-3.');
+            })
+
+            $('.buttons').on('click', function() {
+                alert('The button has been clicked-II.');
+            })
+
+            $('#mouseMov').css('height', '400px')
+                    .css('width', '400px')
+                    .css('background-color', '#e0445ec4');
+            
+            $('p').css('padding-left', '75px')
+                  .css('padding-top', '160px')
+                  .css('font-size', '1.5em')
+                  .css('color', 'black');
+
+            $('#showStatus').css('color', '#f1210afb')
+                     .css('background-color', '#ffa600e5')
+                     .css('display', 'block')
+                     .css('width', '400px')
+                     .css('height', '50px')
+                     .css('text-align', 'center')
+                     .css('padding-top', '15px')
+                     .css('font-size', '1.5em')
+                     .css('margin-bottom', '.5em');
+
+            $('#mouseMov').on({
+                mouseenter: function() {
+                    $('#showStatus').text('Your mouse entered the div.');
+                },
+                mouseleave: function() {
+                    $('#showStatus').text('Your mouse left the div.');
+                },
+                click: function() {
+                    $('#showStatus').text('Your mouse click the div.');
+                }
+            });
+
+            $('moudleMedia').on('click', function(event) {
+                event.preventDefault();
+                $(this).css('color', 'red');
+                alert('Node name: '+event.target.nodeName);
+            });
+
+            $('section:eq(1)').css('width', '400px')
+                              .css('height', '50px')
+                              .css('margin-top', '0px')
+                              .css('background-color', '#e0445ec4')
+                              .css('text-align', 'center')
+                              .css('margin-bottom', '.5em');
+                    
+            $('#moudleMedia').css('padding-top', '15px').css('font-size', '1.5em');
+
+            $(window).resize(function () {
+                $('#resizeBr').text(`width: ${$(window).width()}px, height:${$(window).height()}px`);
+            });
+
+            
+            $('#resizeBr').css('background-color', '#ffa600e5')
+                          .css('width', '400px')
+                          .css('height', '50px')
+                          .css('color', 'black')
+                          .css('margin-bottom', '.5em')
+                          .css('font-size', '1.5em')
+                          .css('text-align', 'center')
+                          .css('padding-top', '8px');
+            
+
+            $('#inputText').focus(function () {
+                $(this).css('background-color', 'grey')
+                       .css('width', '312px')
+                       .css('height', '50px');
+            })
+
+            $('#inputText').blur(function () {
+                $(this).css('background-color', 'white')
+                       .css('width', '312px')
+                       .css('height', '50px');
+            });
+
+            $('label').css('color', 'black');
+
+            $('#inputText').css('width', '312px')
+                           .css('height', '50px')
+                           .css('margin-bottom', '0.5em');
+
+            $('form input').css('margin-bottom', '0.5em')
+                           .css('height', '30px')
+                           .css('width', '200px');
+
+            $('form button').css('margin-left','50px')
+                            .css('width', '90px')
+                            .css('height', '30px');
+
+
+            $('#myForm').submit(function (event) {
+                event.preventDefault();
+
+                var myName = $('#name').val().trim();
+                if (myName === '') {
+                    $('#name').next().text('This is required!');
+                    $('#name').next().css('color', 'red');
+                    $('#name').css('border', '1px, solid, red');
+                } else {
+                    $('#name').next().text('');
+                    $('#name').css('border', '1px, solid, green');
+                }
+                $('#name').val(myName);
+
+                var emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
+                var myEmail = $('#email').val().trim();
+                if (myEmail === '') {
+                    $('#email').next().text('This is required!');
+                    $('#email').next().css('color', 'red');
+                    $('#email').css('border', '1px, solid, red');
+                } else if(!emailPattern.test(myEmail)) {
+                    $('#email').next().text('The format must be the email one.');
+                    $('#email').next().css('color', 'red');
+                    $('#email').css('border', '1px, solid, red');
+                } else {
+                    $('#email').next().text('');
+                    $('#email').css('border', '1px, solid, green');
+                }
+                $('#email').val(myEmail);
+            })
+
+        });
+
+    </script>
+
+</head>
+<body>
+    <section>
+        
+        <input type="button" id="mybutton1" value="Click Me 1">
+            
+        <input type="button" id="mybutton2" value="Click Me 2">
+            
+        <input type="button" id="mybutton3" value="Click Me 3">
+            
+        <button class="buttons">Button I</button>
+        <button class="buttons">Button II</button>
+            
+    </section>
+
+    <div id="mouseMov">
+        <p>Try your mouse here.</p>
+    </div>
+    <span id="showStatus"></span>
+
+    <section>
+        <a href="modulemedia.com" id="moudleMedia">Module Media</a>
+    </section>
+    
+    <div id="resizeBr">
+    </div>
+
+    <label for="inputText">Text Input:</label>
+    <input type="text" id="inputText" name="inputText"><br><br>
+
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" height="40px">
+        <span>*</span><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" height="40px" width="240px">
+        <span>*</span><br>
+
+        <button type="submit">Submit</button>
+        <!--<input type="submit" id="submit" name="submit" value="Submit">-->
+    </form>
+
+</body>
+</html>
